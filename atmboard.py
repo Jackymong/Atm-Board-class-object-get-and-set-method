@@ -1,7 +1,12 @@
 class Atm:
+    __counter = 1 #static/class variable
     def __init__(self):  #__init__ constructor
-        self.__pin = ""
+        self.__pin = "" # instance variable
         self.__balance = 0
+        #static/class variable start
+        self.sno = Atm.counter
+        Atm.__counter = Atm.__counter + 1
+        #static/class variable end
         self.__menu()
         
     def __menu(self):
@@ -23,6 +28,17 @@ class Atm:
             self.check_balance()
         else:
             print("Thank You")
+
+    @staticmethod
+    def get_counter():
+        return Atm.__counter
+
+    @staticmethod
+    def set_counter(new):
+        if type(new)==int:
+            Atm.__counter = new
+        else:
+            print("Not allowed")
 
     def get_pin(self):
         return self.__pin
